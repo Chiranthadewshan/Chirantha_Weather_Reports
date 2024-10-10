@@ -73,5 +73,10 @@ body{
     display: none;
 }
 
+.marquee{
+    font-weight: bold;
+    color: #fff;
+}
+
 
 
