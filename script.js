@@ -10,6 +10,8 @@ function getWeather(){
  
     var currentWeather = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}` ;
  
+    var forecast = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}` ;
+
     var cwRequest = new XMLHttpRequest();
     cwRequest.open('GET',currentWeather,true);
  
@@ -18,19 +20,40 @@ function getWeather(){
              if(cwRequest.status == 200){
  
                  var data = JSON.parse(cwRequest.responseText);
-                diplayWeather(data);
+                displayWeather(data);
                 
  
              }else{
                  alert("Failed to load Weather Data");
              }
          }
-     };
+    };
     cwRequest.send();
  
+
+
+    //forecast request
+    var fcRequest = new XMLHttpRequest();
+    fcRequest.open('GET', forecast, true);
+    fcRequest.onreadystatechange = function () {
+
+        if (fcRequest.readyState == 4) {
+            if (fcRequest.status == 200) {
+              var fcdata = JSON.parse(fcRequest.responseText);
+              displayForecastWeather(fcdata.list);
+
+
+            }else{
+                alert("Failed to load Forecast Data");
+            }
+        }
+    };
+    fcRequest.send();
+
+
  }
  
- function  diplayWeather(data) {
+ function  displayWeather(data) {
       
       var weatherInfo = document.getElementById('weather-info');
  
@@ -82,6 +105,43 @@ function getWeather(){
          description.innerHTML = desc;
        }
  }
+
+ function displayForecastWeather(forecastData) {
+
+    var forecastDiv = document.getElementById("forecast");
+
+    var hours = forecastData.slice(0,16);
+
+    hours.forEach(item=>{
+        var dateTime = new Date(item.dt * 1000);
+
+        var hour = dateTime.getHours();
+
+        var temp = Math.round(item.main.temp - 273.15);
+
+        var iconCode = item.weather[0].icon;
+
+        var img = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+
+
+        var hourlyItem = `
+
+        <div class="forecast-items">
+
+            <span>${hour}:00</span>
+            <img src ="${img}"/>
+            <span>${temp}\u00B0c</span>
+
+        </div>
+        `;
+
+        forecastDiv.innerHTML += hourlyItem;
+        
+    });
+ }
  
  
  
+      
+ 
+        
