@@ -1,10 +1,18 @@
 body{
-    background: linear-gradient(100deg,#0052D4    ,#00B0A1 );
+    background-image: url("pexels-jplenio-1118873.jpg");
+    background-size: cover;
     display: flex;
     height: 100vh;
     width: 100vw;
     justify-content: center;
     align-items: center;
+}
+
+.appname{
+    background-color: #ffffff00;
+    color: #fff;
+    width: 250px;
+    padding: 2px;
 }
 
 .weather-card{
