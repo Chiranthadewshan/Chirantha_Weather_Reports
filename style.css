@@ -1,6 +1,6 @@
 body{
-    background-image: url("pexels-jplenio-1118873.jpg");
-    background-size: 100% auto;
+    background-image: url("https://picsum.photos/1920/1080");
+    background-size: cover;
     display: flex;
     height: 100vh;
     width: 100vw;
