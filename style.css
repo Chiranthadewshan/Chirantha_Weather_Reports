@@ -1,5 +1,5 @@
 body{
-    background-image: url("pexels-jplenio-1118873.jpg");
+    background-image: url("pexels-jplenio-1102915.jpg");
     background-size:cover;
     display: flex;
     height: 100vh;
@@ -16,7 +16,7 @@ body{
 }
 
 .weather-card{
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.137);
     width: 350px;
     padding: 20px;
     border-radius: 20px;
